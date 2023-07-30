@@ -1,7 +1,6 @@
 package com.example.healthcaremicroservice.healthcaremicroservice;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
@@ -12,13 +11,90 @@ public class Clinic {
     private @Id Long sorCode;
     private String region;
     private String clinicType;
+    private String mainSpeciality;
+    private int cvr;
+    private String phoneNumber;
+    private String email;
+    private String homepage;
+    private int postalCode;
+    private String city;
+    private String addressLine;
+    private String organizationName;
 
-    Clinic() {}
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public Clinic() {}
 
     Clinic(Long sorCode, String region, String clinicType) {
         this.sorCode = sorCode;
         this.region = region;
         this.clinicType = clinicType;
+    }
+
+    public String getMainSpeciality() {
+        return mainSpeciality;
+    }
+
+    public void setMainSpeciality(String mainSpeciality) {
+        this.mainSpeciality = mainSpeciality;
+    }
+
+    public void setCvr(int cvr) {
+        this.cvr = cvr;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddressLine() {
+        return addressLine;
+    }
+
+    public void setAddressLine(String addressLine) {
+        this.addressLine = addressLine;
     }
 
     public Long getSorCode() {
@@ -31,6 +107,10 @@ public class Clinic {
 
     public String getClinicType() {
         return this.clinicType;
+    }
+
+    public int getCvr() {
+        return cvr;
     }
 
     public void setSorCode(Long sorCode) {
@@ -47,7 +127,6 @@ public class Clinic {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o)
             return true;
         if (!(o instanceof Clinic))
