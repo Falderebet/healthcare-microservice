@@ -1,6 +1,9 @@
 package com.example.healthcaremicroservice.healthcaremicroservice;
 
+import com.opencsv.bean.CsvBindByName;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
@@ -8,17 +11,42 @@ import java.util.Objects;
 @Entity
 public class Clinic {
 
-    private @Id Long sorCode;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @CsvBindByName(column = "SOR-kode")
+    private Long sorCode;
+
+    @CsvBindByName(column = "P_Region")
     private String region;
+
+    @CsvBindByName(column = "Enhedstype")
     private String clinicType;
+
+    @CsvBindByName(column = "Hovedspeciale")
     private String mainSpeciality;
+
+    @CsvBindByName(column = "CVR")
     private int cvr;
+
+    @CsvBindByName(column = "Telefon")
     private String phoneNumber;
+
+    @CsvBindByName(column = "E-mail")
     private String email;
+
+    @CsvBindByName(column = "Hjemmeside")
     private String homepage;
+
+    @CsvBindByName(column = "P_Postnummer")
     private int postalCode;
+
+    @CsvBindByName(column = "P_By")
     private String city;
+
+    @CsvBindByName(column = "Postadresse")
     private String addressLine;
+
+    @CsvBindByName(column = "Enhedsnavn")
     private String organizationName;
 
     public String getOrganizationName() {
@@ -31,11 +59,48 @@ public class Clinic {
 
     public Clinic() {}
 
+    public Clinic(Long sorCode, String region, String clinicType, String mainSpeciality, int cvr, String phoneNumber,
+                  String email, String homepage, int postalCode, String city,
+                  String addressLine, String organizationName) {
+        this.sorCode = sorCode;
+        this.region = region;
+        this.clinicType = clinicType;
+        this.mainSpeciality = mainSpeciality;
+        this.cvr = cvr;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.homepage = homepage;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.addressLine = addressLine;
+        this.organizationName = organizationName;
+    }
+
+    @Override
+    public String toString() {
+        return "Clinic{" +
+                "sorCode=" + sorCode +
+                ", region='" + this.region + '\'' +
+                ", clinicType='" + clinicType + '\'' +
+                ", mainSpeciality='" + mainSpeciality + '\'' +
+                ", cvr=" + cvr +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", homepage='" + homepage + '\'' +
+                ", postalCode=" + postalCode +
+                ", city='" + city + '\'' +
+                ", addressLine='" + addressLine + '\'' +
+                ", organizationName='" + organizationName + '\'' +
+                '}';
+    }
+
+    /*
     Clinic(Long sorCode, String region, String clinicType) {
         this.sorCode = sorCode;
         this.region = region;
         this.clinicType = clinicType;
     }
+    */
 
     public String getMainSpeciality() {
         return mainSpeciality;
@@ -141,8 +206,4 @@ public class Clinic {
         return Objects.hash(this.sorCode, this.clinicType, this.region);
     }
 
-    @Override
-    public String toString() {
-        return "Clinic{" + "SOR-code=" + this.sorCode + ", clinic type=" + this.clinicType + ", region=" + this.region;
-    }
 }
