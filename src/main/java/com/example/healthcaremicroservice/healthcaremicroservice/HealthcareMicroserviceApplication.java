@@ -15,7 +15,6 @@ public class HealthcareMicroserviceApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Jeg er i main");
 		SpringApplication.run(HealthcareMicroserviceApplication.class, args);
 	}
 
