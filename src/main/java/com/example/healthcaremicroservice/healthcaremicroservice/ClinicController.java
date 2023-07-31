@@ -1,5 +1,6 @@
 package com.example.healthcaremicroservice.healthcaremicroservice;
 
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class ClinicController {
@@ -36,8 +40,15 @@ public class ClinicController {
     }
 
     @GetMapping("/lookup/{sorcode}")
-    Clinic lookUpClinic(@PathVariable Long sorcode) {
-        return repository.findById(sorcode)
+    EntityModel<Clinic> lookUpClinic(@PathVariable Long sorcode) {
+        Clinic clinic = repository.findById(sorcode)
                 .orElseThrow(() -> new ClinicNotFoundException(sorcode));
+
+        //TODO: figure out what makes sense to link to.
+        return EntityModel.of(clinic,
+                linkTo(methodOn(ClinicController.class).lookUpClinic(sorcode)).withSelfRel(),
+                linkTo(methodOn(ClinicController.class).getRegionStats()).withRel("regionstats"),
+                linkTo(methodOn(ClinicController.class).organizationSearch(clinic.getPostalCode(),
+                        clinic.getMainSpeciality())).withRel("organizationsearch"));
     }
 }
