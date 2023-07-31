@@ -27,7 +27,7 @@ public class ClinicController {
 
     @GetMapping("/stats")
     Map<String, Map<String, Long>> getRegionStats() {
-        // TODO: error handling.
+        // TODO: error handling / edge case handling.
         return service.getRegionStats();
     }
 

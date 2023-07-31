@@ -1,5 +1,7 @@
 package com.example.healthcaremicroservice.healthcaremicroservice;
 
+import java.util.Objects;
+
 public class OrganizationSearchDTO {
     private String name;
     private String mainSpecialty;
@@ -45,5 +47,19 @@ public class OrganizationSearchDTO {
 
     public void setSorCode(Long sorCode) {
         this.sorCode = sorCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof OrganizationSearchDTO))
+            return false;
+        OrganizationSearchDTO organizationSearchDTO = (OrganizationSearchDTO) o;
+        return Objects.equals(this.sorCode, organizationSearchDTO.sorCode)
+                && Objects.equals(this.address, organizationSearchDTO.address)
+                && Objects.equals(this.cvrNumber, organizationSearchDTO.cvrNumber)
+                && Objects.equals(this.name, organizationSearchDTO.name)
+                && Objects.equals(this.mainSpecialty, organizationSearchDTO.mainSpecialty);
     }
 }

@@ -190,6 +190,7 @@ public class Clinic {
         this.clinicType = clinicType;
     }
 
+    // TODO: update equals for Clinic.
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -201,6 +202,7 @@ public class Clinic {
                 && Objects.equals(this.region, clinic.region);
     }
 
+    // TODO: update hashcode generation of Clinics.
     @Override
     public int hashCode() {
         return Objects.hash(this.sorCode, this.clinicType, this.region);
